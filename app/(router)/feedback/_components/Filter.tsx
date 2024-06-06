@@ -114,7 +114,7 @@ export function Filter({ authors, feedbacks }: { authors: any[], feedbacks: Feed
           </div>
             
           </div>
-    }) : <p className="text-lg font-sans text-black dark:text-amber-500 p-2">/ لا توجد ردود افعال على  / {felterText} </p>}
+    }) : <p className="text-lg font-sans text-black dark:text-amber-500 p-2">/لا توجد ردود افعال على  / {felterText} </p>}
   </>
   )
 }

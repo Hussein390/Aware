@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Edit, ThumbsUp, Trash } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { usePathname } from 'next/navigation';
 
 interface Comment {

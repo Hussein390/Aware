@@ -1,5 +1,5 @@
 import Avideo  from "../../_components/Aviedo";
-import { GetAutherData, GetAllAutherData, getComments, AuthorData } from "@/app/api/server";
+import { GetAllAutherData, getComments } from "@/app/api/server";
 import Comment from "../../_components/Comment";
 import {  headers } from "next/headers";
 import { Suspense } from "react";

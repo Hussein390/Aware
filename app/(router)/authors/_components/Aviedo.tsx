@@ -1,10 +1,9 @@
 'use client'
 import { usePathname, useRouter } from 'next/navigation'
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { Suspense,  useState } from 'react'
 import { SkeletonIFrame } from './Skeleton';
 import IFrame from './Frame';
-import { AuthorData, Category, editCompleted, increaseNumber } from '@/app/api/server';
-import {PostId }from './PostId';
+import {  editCompleted, increaseNumber } from '@/app/api/server';
 
 export const PathId = () => {
   const pathname = usePathname();
