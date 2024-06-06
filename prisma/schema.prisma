@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  email     String    @unique
+  name      String
+  image     String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  comments  Comment[]
+}
+
+model AuthersData {
+  id              String       @id @default(auto()) @map("_id") @db.ObjectId
+  categoreyname   String
+  name            String
+  img             String
+  videonum        Int
+  maxtime         String
+  free            String
+  geturl          String
+  completedvideos Int
+  categories      Categories[]
+  feedBacks       FeedBack[]
+}
+
+model FeedBack {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  body         String
+  name         String
+  image        String
+  categoryname String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  like         Like[]
+
+  author   AuthersData @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId String      @db.ObjectId
+}
+
+model Categories {
+  id         String       @id @default(auto()) @map("_id") @db.ObjectId
+  autherdata AuthersData? @relation(fields: [autherId], references: [id])
+  autherId   String?      @db.ObjectId
+
+  completed     Boolean
+  meid          String
+  categoreyname String
+  name          String
+  img           String
+  videoname     String
+  minunts       String
+  free          String
+  geturl        String
+  src           String
+  describtion   String?
+  comments      Comment[]
+  like          Like[]
+}
+
+model Comment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  message   String
+  name      String
+  image     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  category   Categories @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId String     @db.ObjectId
+  parent     Comment?   @relation("ParentCild", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  children   Comment[]  @relation("ParentCild")
+  parentId   String?    @db.ObjectId
+  User       User?      @relation(fields: [userId], references: [id])
+  userId     String?    @db.ObjectId
+  likes      Like[]
+}
+
+model Like {
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  category   Categories? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  feedBack   FeedBack?   @relation(fields: [feedBackId], references: [id], onDelete: Cascade)
+  categoryId String?     @db.ObjectId
+  feedBackId String?     @db.ObjectId
+  Comment    Comment?    @relation(fields: [commentId], references: [id])
+  commentId  String?     @db.ObjectId
+}
+
+// npx prisma generate
