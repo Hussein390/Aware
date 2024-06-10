@@ -153,14 +153,15 @@ export default function News() {
     <div className="">
       <h1 className='capitalize dark:text-blue-500 text-blue-800 text-2xl font-bold p-4'>Suggested <span className="text-blue-600 animate-bounce inline-block">people</span> To check out</h1>
       <div className='grid w-full grid-cols-2 sm:grid-cols-3  p-2 gap-4 '>
-        {people.map(item => {
+        {people.map((item, ind) => {
           return (
             
-      <Link key={item.id} href={`/${item.name.toLowerCase().replaceAll(' ', '-')}${item.id}`} className="p-6 gap-3  cursor-pointer flex flex-col lg:flex-row items-center rounded-xl dark:bg-slate-100 bg-white shadow-md">
+            <Link key={item.id} href={`/${item.name.toLowerCase().replaceAll(' ', '-')}${item.id}`}
+              className={`p-6 gap-3 ${ind === 2? 'col-span-2 sm:col-span-1': ''} cursor-pointer flex flex-col lg:flex-row items-center rounded-xl dark:bg-slate-100 bg-white shadow-md`}>
         <Image
           src={`/${item.img}`}
           width={150}
-          height={100}
+          height={120}
           alt=''
           style={{ width: '280px', height: '200px' }}
           className='rounded-md object-cover'

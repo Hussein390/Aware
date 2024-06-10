@@ -1,16 +1,14 @@
 'use client'
 
-import React, { useState, useEffect, Suspense } from 'react'
+import React, { useState, useEffect} from 'react'
 import { Search } from 'lucide-react'
-import { Category, GetAllCategories } from '@/app/api/server'
+import { AuthorData, GetAllCategories } from '@/app/api/server'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import SkeltonForAll from './Skeltons/SkeltonForAll'
+import Link from 'next/link'
 
 export default function SearchInput() {
   const [search, setSearch] = useState('')
-  const [results, setResults] = useState<Category[]>([])
-  const router = useRouter()
+  const [results, setResults] = useState<AuthorData[]>([])
   const regex = /^\d+:/;
 
   useEffect(() => {
@@ -41,9 +39,8 @@ export default function SearchInput() {
         {search !== '' &&   
       <div>
         <div className="overflow-y-auto max-h-[400px] absolute top-14 z-50 left-0 bg-purple p-2 rounded">
-        {results?.map((item, index) => (
-          <div key={index} onClick={() => {
-            router.push(`/authors/${item.geturl}/${item.meid}`)
+        {results?.map(item => item.categories.map((item, index) => (
+          <Link key={index} href={`/authors/${item.geturl}/${item.meid}`} onClick={() => {
             setSearch('')
           }} className="rounded w-[280px] h-[80px] my-1 border border-slate-500 bg-n2dark  cursor-pointer flex justify-between  gap-x-1" >
             <div className="w-[120px] relative">
@@ -62,8 +59,8 @@ export default function SearchInput() {
 
             </div>
               </div>
-          </div>
-        ))}
+          </Link>
+        )))}
       </div>
       </div>
 }

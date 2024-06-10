@@ -48,7 +48,7 @@ export default function Dstoiviski({ data }: { data: AuthorData[] }) {
                   className='rounded-t-xl object-cover'
                 />
 
-                <h1 className="font-semibold text-[20px] my-3 w-fit ml-auto mr-2 group-hover:animate-bounce text-black">{item.categoreyname ?? 'Hussein Saleem'}</h1>
+                <h1 className="font-semibold text-[20px] my-3 w-fit ml-auto mr-2 group-hover:animate-bounce text-white">{item.categoreyname ?? 'Hussein Saleem'}</h1>
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center lg:items-start lg:flex-col gap-y-2 m-1 mb-3" style={{ direction: 'rtl' }}>
                   <span className="font-sans text-sm dark:text-slate-300  ">الكاتب: <span className="text-black font-bold dark:text-blue-200">{item.name ?? 'Hussein Saleem'}</span></span>
                   <span className="font-sans text-sm dark:text-slate-300  ">بصوت: <span className="text-black font-bold dark:text-blue-200">مأمون عليمات</span></span>

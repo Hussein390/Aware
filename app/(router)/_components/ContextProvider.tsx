@@ -1,5 +1,4 @@
 // context.ts
-import { usePathname } from "next/navigation";
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface ContextProps {

@@ -29,6 +29,7 @@ model AuthersData {
   name            String
   img             String
   videonum        Int
+  description     String?
   maxtime         String
   free            String
   geturl          String

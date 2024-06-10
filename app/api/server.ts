@@ -29,6 +29,7 @@ export  type AuthorData = {
   img: string;
   videonum: number;
   free: string;
+  description: string | null,
   maxtime: string;
   completedvideos: number,
   geturl: string;
@@ -46,6 +47,7 @@ export async function Authors(data: AuthorData) {
         img: data.img,
         completedvideos: data.completedvideos,
         videonum: data.videonum,
+        description: data.description!,
         free: data.free,
         maxtime: data.maxtime,
         geturl: data.geturl,
@@ -76,12 +78,12 @@ export async function Authors(data: AuthorData) {
   }
 }
 
-export async function GetAutherData(name: string[]){
+export async function GetAutherData(geturl: string[]){
   try {
     const data = await prisma.authersData.findMany({
       where:
       {
-        name: { in: name }
+        geturl: { in: geturl }
       },
       include: {
         categories: true, 
@@ -94,17 +96,40 @@ export async function GetAutherData(name: string[]){
     console.log(err.message)
   }
 }
+export async function addDescriptiuon(id: string, description: string){
+  try {
+    const data = await prisma.authersData.update({
+      where: {
+        id,
+      },
+      data: {
+        description: description,
+      }
+    });
+    
+    return data;
+  } catch (err: any) {
+    console.log(err.message)
+  }
+}
 
 
 export async function GetAllCategories(search: string) {
   try {
-    const data = await prisma.categories.findMany({
+    const data = await prisma.authersData.findMany({
       where: {
-        videoname: {
-          contains: search,
-          mode: 'insensitive' 
+        categories: {
+          some: {
+            videoname: {
+              contains: search,
+              mode: 'insensitive' 
+            }
+          }
         }
       },
+      include: {
+        categories: true,
+      }
     });
     
     return data;

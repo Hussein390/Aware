@@ -1,5 +1,5 @@
 'use client'
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import { people } from '@/app/(router)/_components/News';
@@ -142,6 +142,7 @@ export default function Author({ path }: { path: string }) {
         
       
       </div>
+
 
       <Link className='p-1 px-2 text-slate-50 bg-blue-400 hover:bg-blue-500 rounded sticky bottom-4 float-end' href={'/'}>Back</Link>
     </div>

@@ -53,7 +53,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <SkeltonForAll width="100%" height="60px" mdWidth="100%" mdHeight="60px" margain="1px" />
         <SkeltonForAll width="50px" height="60px" mdWidth="50px" mdHeight="60px" margain="1px" />
         </div>}>
-      <Comment categoryId={data![ID].categories[id].id} comments={comments?.comments ?? []} />
+      <Comment categoryId={categoryId} comments={comments?.comments ?? []} />
       </Suspense>
     </div>
   );

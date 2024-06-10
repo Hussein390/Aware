@@ -39,7 +39,7 @@ export default function RootLayout({
 }
 
 const RootLayoutContent: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isOpen, setIsOpen } = useMyContext();
+  const { isOpen} = useMyContext();
 
   return (
     <>
@@ -48,7 +48,7 @@ const RootLayoutContent: React.FC<{ children: React.ReactNode }> = ({ children }
           <SideBar />
         </div>
       )}
-      <div style={{marginLeft: isOpen? '': ''}}  >
+      <div className={`transition-all duration-500 ease-in-out ${isOpen ? 'md:ml-[230px]' : 'ml-0'}`}>
         <Header />
         {children}
       </div>
